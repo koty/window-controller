@@ -13,7 +13,7 @@ class ScanDelegate( DefaultDelegate ):
   humidity = 0
   battery = 0
   def handleDiscovery( self, dev, isNewDev, isNewData ):
-    if dev.addr == macaddr:
+    if dev.addr == self.macaddr:
       for ( adtype, desc, value ) in dev.getScanData():
         if ( adtype == 22 ):
           servicedata = binascii.unhexlify( value[4:] )
