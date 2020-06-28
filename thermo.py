@@ -1,3 +1,4 @@
+# https://qiita.com/warpzone/items/11ec9bef21f5b965bce3
 import binascii
 from bluepy.btle import Scanner, DefaultDelegate
 from environment import get_values
@@ -56,7 +57,7 @@ class ScanDelegate( DefaultDelegate ):
 
 def getData():
     scanner = Scanner().withDelegate( ScanDelegate() )
-    scanner.scan( timeout=5 )
+    scanner.scan( timeout=10 )
     return { 'temperature': scanner.delegate.temperature, 'humidity': scanner.delegate.humidity, 'battery': scanner.delegate.battery }
 
 if __name__ == '__main__':
