@@ -1,0 +1,5 @@
+[default]
+window_state = close
+th_to_be_closed = 25
+th_to_be_opened = 27
+

@@ -1,7 +1,7 @@
-import configparser
+from config import get_window_state, save_window_state
 from environment import get_values
 import subprocess
-
+from datetime import datetime as dt
 
 """
 row ゼロ番目：温度、1番目湿度
@@ -73,17 +73,3 @@ def cmd_window(cmd, dry_run=False):
   }
 }
 """
-
-def get_window_state():
-  config = configparser.ConfigParser()
-  config.read('app_state.ini')
-  return config['default']['window_state']
-
-APP_STATE_FILE_NAME = 'app_state.ini'
-
-def save_window_state(state):
-  config = configparser.ConfigParser()
-  config.read(APP_STATE_FILE_NAME)
-  config['default']['window_state'] = state
-  with open(APP_STATE_FILE_NAME, 'w') as file:
-    config.write(file)
