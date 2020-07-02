@@ -51,13 +51,18 @@ def cmd_window(cmd, dry_run=False):
   envs = get_values()
   args = ['tuya-cli', 'set', '--dps', '102', '--set', cmd, '--id', envs["TUYA_ID"], '--key', envs["TUYA_KEY"]]
   print(f'cmd: {cmd}')
-  print(f"args: {' '.join(args)}")
+  print(f"{ymd()} args: {' '.join(args)}")
   if not dry_run:
     completed_process = subprocess.run(args, timeout=60, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    print(f'stdout: {completed_process.stdout}, stderr: {completed_process.stderr}', flush=True)
+    # print(f'stdout: {completed_process.stdout}, stderr: {completed_process.stderr}', flush=True)
   if cmd == 'pause':
     return
   save_window_state(state=cmd)
+
+def ymd():
+  d = dt.now()
+  s = d.strftime('%Y-%m-%d %H:%M:%S')
+  return s
 
 """
 { devId: 'xxxx',
