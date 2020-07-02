@@ -1,4 +1,4 @@
-from config import get_window_state, save_window_state
+from config import get_window_state, save_window_state, get_th_to_be_closed, get_th_to_be_opened
 from environment import get_values
 import subprocess
 from datetime import datetime as dt
@@ -18,9 +18,11 @@ def open_or_close_window(rows):
 def _get_cmd(rows):
   arr = [r[0] for r in rows]
   avg = _avg[arr]
-  if avg >= 27:
+  to_be_opend = get_th_to_be_opened()
+  to_be_closed = get_th_to_be_closed()
+  if avg >= to_be_opend:
     return 'open'
-  elif avg <= 25:
+  elif avg <= to_be_closed:
     return 'close'
   else:
     return None
